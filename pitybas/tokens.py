@@ -679,7 +679,7 @@ class iPart(MathExprFunction):
 
 class fPart(MathExprFunction):
     def call(self, vm, arg):
-        return math.modf(arg)[1]
+        return math.modf(arg)[0]
 
 class floor(MathExprFunction):
     def call(self, vm, arg):
@@ -689,7 +689,7 @@ class ceiling(MathExprFunction):
     def call(self, vm, arg):
         return math.ceil(arg)
 
-class mod(Function):
+class remainder(Function):
     def call(self, vm, args):
         assert len(args) == 2
         return args[0] % args[1]
