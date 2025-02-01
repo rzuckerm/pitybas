@@ -911,7 +911,7 @@ class sub(Function):
         assert len(args) == 3
         s = args[0]
         a, b = args[1], args[2]
-        assert a > 0 and b < len(s)
+        assert a > 0 and b > 0
         return s[a - 1:a - 1 + b]
 
 class length(Function):
