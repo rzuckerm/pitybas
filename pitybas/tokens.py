@@ -904,7 +904,7 @@ class inString(Function):
         skip = 0
         if len(args) == 3:
             skip = args[2]
-        return haystack.find(needle, skip)
+        return haystack.find(needle, skip) + 1
 
 class sub(Function):
     def call(self, vm, args):
