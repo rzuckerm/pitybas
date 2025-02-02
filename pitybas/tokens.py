@@ -104,7 +104,7 @@ class Parent:
             else:
                 raise AttributeError
         except AttributeError:
-            return NotImplemented
+            return NotImplementedError
 
     def __repr__(self):
         return repr(self.token)
@@ -918,6 +918,23 @@ class length(Function):
     def call(self, vm, args):
         assert len(args) == 1
         return len(args[0])
+
+class toString(Function):
+    def call(self, vm, args, quote=False):
+        assert len(args) == 1
+        value = args[0]
+        if isinstance(value, basestring):
+            return '"' + value + '"' if quote else value
+        elif isinstance(value, (int, long, float, decimal.Decimal)):
+            return str(vm.disp_round(value))
+        elif all(isinstance(x, list) for x in value):
+            s = "["
+            for x in value:
+                s += "[" + ",".join(self.call(vm, [y], quote=True) for y in x) + "]"
+            s += "]"
+            return s
+        else:
+            return "{" + ",".join(self.call(vm, [x], quote=True) for x in value) + "}"
 
 # control flow
 
