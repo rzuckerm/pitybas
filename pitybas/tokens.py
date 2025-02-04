@@ -1310,7 +1310,14 @@ class Input(Token):
         else:
             is_str = False
 
-        val = vm.io.input(msg, is_str)
+        try:
+            val = vm.io.input(msg, is_str)
+        except EOFError:
+            val = None
+
+        if val is None:
+            val = ""
+
         var.set(vm, val)
 
 class getKey(Variable):
