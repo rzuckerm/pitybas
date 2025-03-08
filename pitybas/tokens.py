@@ -262,6 +262,13 @@ class List(Variable, Stub):
 class ListToken(List):
     token = u'∟'
 
+class ClrList(Token):
+    absorbs = (Expression,)
+
+    def run(self, vm):
+        assert isinstance(self.arg, List)
+        vm.set_list(self.arg.name, [])
+
 class Matrix(Variable, Stub):
     absorbs = (Arguments,)
 

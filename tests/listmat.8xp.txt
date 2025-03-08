@@ -26,3 +26,11 @@ Disp dim(l1), l1
 
 {1,1}->dim([A])
 Disp dim([A]), [A]
+
+Disp "clear list"
+ClrList lFOO
+Disp dim(lFOO), lFOO
+{1,2,3}->l3
+Disp dim(l3), l3
+ClrList l3
+Disp dim(l3), l3
