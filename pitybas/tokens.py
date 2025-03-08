@@ -5,6 +5,7 @@ import fractions
 import math
 import random
 import string
+import time
 
 from common import Pri, ExecutionError, StopError, ReturnError
 from expression import Tuple, Expression, Arguments, ListExpr, MatrixExpr
@@ -1378,13 +1379,24 @@ class REPL(Token):
 
         vm.line, vm.col = self.line, self.col
 
-# date commands
+# date/time commands
 
 class dayOfWk(Function):
     def call(self, vm, args):
         assert len(args) == 3
         date = datetime.datetime(year=args[0], month=args[1], day=args[2])
         return date.isoweekday() % 7 + 1
+
+class getTime(Variable):
+    def get(self, vm):
+        t = int(time.time() - vm.init_time) % 86400
+        return [t // 3600, (t // 60) % 60, t % 60]
+    
+class setTime(Function):
+    def call(self, vm, args):
+        assert len(args) == 3
+        t = (args[0] * 3600 + args[1] * 60 + args[2]) % 86400
+        vm.init_time = time.time() - t
 
 # file IO (not in original TI-Basic)
 

@@ -47,6 +47,8 @@ class Interpreter(object):
         self.serial = 0
         self.repl_serial = 0
 
+        self.init_time = time.time()
+
     def cur(self):
         return self.code[self.line][self.col]
 
