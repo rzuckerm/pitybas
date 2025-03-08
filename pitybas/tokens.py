@@ -470,7 +470,6 @@ class FloatOperator(Operator, Stub):
     def run(self, vm, left, right):
         # TODO: be smarter about when to coerce to float
         if isinstance(left, (int, long)) or isinstance(right, (int, long)):
-            decimal.getcontext().prec = max(len(str(left)), len(str(right)))
             left = decimal.Decimal(left)
             right = decimal.Decimal(right)
 

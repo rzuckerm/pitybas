@@ -49,6 +49,8 @@ class Interpreter(object):
 
         self.init_time = time.time()
 
+        decimal.getcontext().prec = 14
+
     def cur(self):
         return self.code[self.line][self.col]
 
