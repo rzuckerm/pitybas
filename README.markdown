@@ -2,7 +2,7 @@ pitybas
 =======
 A working TI-BASIC interpreter, written in Python.
 
-Currently, all `.bas` files in tests/ run except circle.bas (due to lack of graph screen functions)
+Currently, all `.8xp.txt` files in tests/ run except circle.8xp.txt (due to lack of graph screen functions)
 
 Use `pb.py -i vt100` to run programs which need a working home screen.
 
